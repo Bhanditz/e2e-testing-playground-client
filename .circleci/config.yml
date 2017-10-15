@@ -22,3 +22,27 @@ jobs:
         
       # run tests!
       - run: npm test
+
+      # build the application
+      - run: npm run build
+
+      # new remote environment is created, and the primary container is configured to use it.
+      - setup_remote_docker
+          docker_layer_caching: true
+
+      # install docker client
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+
+      # build and push Docker image
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t danielesalvatore/e2e-testing-playground-client:$TAG .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push danielesalvatore/e2e-testing-playground-client:$TAG
