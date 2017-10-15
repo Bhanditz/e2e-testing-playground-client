@@ -5,6 +5,9 @@ jobs:
       - image: node:7.4.0
     working_directory: ~/repo
     steps:
+      # new remote environment is created, and the primary container is configured to use it.
+      - setup_remote_docker
+
       - checkout
        # Download and cache dependencies
       - restore_cache:
@@ -25,9 +28,6 @@ jobs:
 
       # build the application
       - run: npm run build
-
-      # new remote environment is created, and the primary container is configured to use it.
-      - setup_remote_docker
 
       # install docker client
       - run:
