@@ -5,6 +5,7 @@ jobs:
       - image: node:7.4.0
     working_directory: ~/repo
     steps:
+      - checkout
        # Download and cache dependencies
       - restore_cache:
           keys:
