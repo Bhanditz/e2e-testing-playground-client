@@ -49,4 +49,4 @@ jobs:
           docker build -t danielesalvatore/e2e-testing-playground-client:$TAG .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push danielesalvatore/e2e-testing-playground-client:$TAG
-          docker push danielesalvatore/e2e-testing-playground-client:latest
+          docker push danielesalvatore/e2e-testing-playground-client
