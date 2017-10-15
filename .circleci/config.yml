@@ -28,7 +28,6 @@ jobs:
 
       # new remote environment is created, and the primary container is configured to use it.
       - setup_remote_docker
-          docker_layer_caching: true
 
       # install docker client
       - run:
