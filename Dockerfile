@@ -1,2 +1,2 @@
 FROM nginx:alpine
-ADD ~/repo/build /usr/share/nginx/html
+ADD ./build /usr/share/nginx/html
