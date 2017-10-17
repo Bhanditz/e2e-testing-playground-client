@@ -53,4 +53,12 @@ jobs:
           docker tag $USERNAME/$IMAGE:$TAG $USERNAME/$IMAGE:latest
           docker push $USERNAME/$IMAGE:$TAG 
           docker push $USERNAME/$IMAGE:latest
+      
+      # Trigger e2e test
+      - run: |
+           curl -u $ACCESS_TOKEN: \
+                -d build_parameters[CIRCLE_JOB]=build \
+                https://circleci.com/api/v1.1/project/github/danielesalvatore/e2e-testing-playground-integration/tree/master
+
+          
 
